@@ -8,8 +8,29 @@ use App\Http\Controllers\AgentController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AdminController;
 
 
+/*
+|--------------------------------------------------------------------------
+| Admin Authentication Routes
+|--------------------------------------------------------------------------
+*/
+
+// Admin Authenticate
+Route::post('/admin/login', [AdminController::class, 'login']);
+
+// Log the Admin Out
+Route::post('/admin/logout', [AdminController::class, 'logout'])->middleware('auth:sanctum');
+
+// Get details of the logged-in Admin
+Route::get('/admin/logged-admin', [AdminController::class, 'loggedAdmin'])->middleware('auth:sanctum');
+
+/*
+|--------------------------------------------------------------------------
+| Authentication Routes
+|--------------------------------------------------------------------------
+*/
 
 // Register a new client
 Route::post('/register', [AuthController::class, 'register']);
@@ -23,7 +44,11 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 // Get details of the logged-in user
 Route::get('/logged-user', [AuthController::class, 'loggedUser'])->middleware('auth:sanctum');
 
-
+/*
+|--------------------------------------------------------------------------
+| Agent Routes
+|--------------------------------------------------------------------------
+*/
 
 // Register a new agent
 Route::post('/agents', [AgentController::class, 'register']);
@@ -40,27 +65,53 @@ Route::get('/agents', [AgentController::class, 'all']);
 // Get a specific agent by ID
 Route::get('/agents/{id}', [AgentController::class, 'specific']);
 
+/*
+|--------------------------------------------------------------------------
+| Property Routes
+|--------------------------------------------------------------------------
+*/
 
+// Retrieve all properties
+Route::get('/properties', [PropertyController::class, 'index']);
 
+// Create a new property
+Route::post('/properties', [PropertyController::class, 'store']);
 
-// CRUD routes for properties
-Route::get('/properties', [PropertyController::class, 'index']);        
-Route::post('/properties', [PropertyController::class, 'store']);     
-Route::get('/properties/{id}', [PropertyController::class, 'show']);   
-Route::put('/properties/{id}', [PropertyController::class, 'update']);  
+// Retrieve a specific property by ID
+Route::get('/properties/{id}', [PropertyController::class, 'show']);
+
+// Update a specific property by ID
+Route::put('/properties/{id}', [PropertyController::class, 'update']);
+
+// Delete a specific property by ID
 Route::delete('/properties/{id}', [PropertyController::class, 'destroy']);
 
+/*
+|--------------------------------------------------------------------------
+| Offer Routes
+|--------------------------------------------------------------------------
+*/
 
+// Retrieve all offers
 Route::get('/offers', [OfferController::class, 'index']);
+
+// Create a new offer
 Route::post('/offers', [OfferController::class, 'store']);
+
+// Retrieve a specific offer by ID
 Route::get('/offers/{id}', [OfferController::class, 'show']);
+
+// Update a specific offer by ID
 Route::put('/offers/{id}', [OfferController::class, 'update']);
+
+// Delete a specific offer by ID
 Route::delete('/offers/{id}', [OfferController::class, 'destroy']);
 
-
-
-
-
+/*
+|--------------------------------------------------------------------------
+| Category Routes
+|--------------------------------------------------------------------------
+*/
 
 // Retrieve all categories
 Route::get('/categories', [CategoryController::class, 'index']);
