@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\OfferController;
+
 
 
 
@@ -47,3 +49,10 @@ Route::post('/properties', [PropertyController::class, 'store']);
 Route::get('/properties/{id}', [PropertyController::class, 'show']);   
 Route::put('/properties/{id}', [PropertyController::class, 'update']);  
 Route::delete('/properties/{id}', [PropertyController::class, 'destroy']);
+
+
+Route::get('/offers', [OfferController::class, 'index']);
+Route::post('/offers', [OfferController::class, 'store']);
+Route::get('/offers/{id}', [OfferController::class, 'show']);
+Route::put('/offers/{id}', [OfferController::class, 'update']);
+Route::delete('/offers/{id}', [OfferController::class, 'destroy']);

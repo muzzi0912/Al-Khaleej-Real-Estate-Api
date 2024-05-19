@@ -44,4 +44,10 @@ class Property extends Model
         'images' => 'array',
         'videos' => 'array',
     ];
+
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
+    }
+
 }
