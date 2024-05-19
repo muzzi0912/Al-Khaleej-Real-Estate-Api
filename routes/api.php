@@ -7,7 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\OfferController;
-
+use App\Http\Controllers\CategoryController;
 
 
 
@@ -56,3 +56,23 @@ Route::post('/offers', [OfferController::class, 'store']);
 Route::get('/offers/{id}', [OfferController::class, 'show']);
 Route::put('/offers/{id}', [OfferController::class, 'update']);
 Route::delete('/offers/{id}', [OfferController::class, 'destroy']);
+
+
+
+
+
+
+// Retrieve all categories
+Route::get('/categories', [CategoryController::class, 'index']);
+
+// Create a new category
+Route::post('/categories', [CategoryController::class, 'store']);
+
+// Retrieve a specific category by ID
+Route::get('/categories/{id}', [CategoryController::class, 'show']);
+
+// Update a specific category by ID
+Route::put('/categories/{id}', [CategoryController::class, 'update']);
+
+// Delete a specific category by ID
+Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);

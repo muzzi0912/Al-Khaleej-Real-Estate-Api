@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\Validator;
 
 class PropertyController extends Controller
 {
-    /**
+     /**
      * Display a listing of the properties.
      *
      * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        $properties = Property::all();
+        $properties = Property::with('category')->get();
         return response()->json($properties);
     }
 
@@ -47,6 +47,7 @@ class PropertyController extends Controller
             'bedrooms' => 'nullable|integer',
             'all_rooms' => 'nullable|integer',
             'kitchen' => 'nullable|integer',
+            'category_id' => 'required|exists:categories,id', // Validate category ID
         ]);
     
         // Check for validation errors
@@ -89,10 +90,11 @@ class PropertyController extends Controller
             'bedrooms' => $request->input('bedrooms'),
             'all_rooms' => $request->input('all_rooms'),
             'kitchen' => $request->input('kitchen'),
+            'category_id' => $request->input('category_id'), // Add category ID
         ]);
     
         // Return the created property
-        return response()->json($property, 201);
+        return response()->json(['message' => 'Property created successfully', 'property' => $property], 201);
     }
     
 
@@ -104,7 +106,7 @@ class PropertyController extends Controller
      */
     public function show($id)
     {
-        $property = Property::find($id);
+        $property = Property::with('category')->find($id);
 
         if (!$property) {
             return response()->json(['message' => 'Property not found'], 404);
@@ -148,6 +150,7 @@ class PropertyController extends Controller
             'bedrooms' => 'nullable|integer',
             'all_rooms' => 'nullable|integer',
             'kitchen' => 'nullable|integer',
+            'category_id' => 'required|exists:categories,id', // Validate category ID
         ]);
     
         // Check for validation errors
@@ -190,10 +193,11 @@ class PropertyController extends Controller
             'bedrooms' => $request->input('bedrooms'),
             'all_rooms' => $request->input('all_rooms'),
             'kitchen' => $request->input('kitchen'),
+            'category_id' => $request->input('category_id'), // Update category ID
         ]);
     
         // Return the updated property
-        return response()->json($property);
+        return response()->json(['message' => 'Property updated successfully', 'property' => $property]);
     }
     
 

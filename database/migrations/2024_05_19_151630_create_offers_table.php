@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreignId('property_id')->constrained('properties')->onDelete('cascade');
             $table->decimal('offer_amount', 10, 2);
             $table->longText('short_description')->nullable();
-
             $table->timestamps();
         });
     }

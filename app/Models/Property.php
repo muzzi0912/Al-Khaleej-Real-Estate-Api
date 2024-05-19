@@ -33,6 +33,7 @@ class Property extends Model
         'bedrooms',
         'all_rooms',
         'kitchen',
+        'category_id',
     ];
 
     /**
@@ -48,6 +49,11 @@ class Property extends Model
     public function offers()
     {
         return $this->hasMany(Offer::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 
 }

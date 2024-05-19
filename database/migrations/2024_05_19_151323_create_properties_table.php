@@ -31,7 +31,11 @@ return new class extends Migration
             $table->integer('bedrooms')->nullable();
             $table->integer('all_rooms')->nullable();
             $table->integer('kitchen')->nullable();
+            $table->unsignedBigInteger('category_id');
             $table->timestamps();
+
+            // Foreign key constraint
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 
@@ -43,3 +47,4 @@ return new class extends Migration
         Schema::dropIfExists('properties');
     }
 };
+
