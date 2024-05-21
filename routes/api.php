@@ -9,7 +9,7 @@ use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -127,3 +127,24 @@ Route::put('/categories/{id}', [CategoryController::class, 'update']);
 
 // Delete a specific category by ID
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
+
+/*
+|--------------------------------------------------------------------------
+| Contact Routes
+|--------------------------------------------------------------------------
+*/
+
+// Retrieve all contacts
+Route::get('/contacts', [ContactController::class, 'index']);
+
+// Create a new contact
+Route::post('/contacts', [ContactController::class, 'store']);
+
+// Retrieve a specific contact by ID
+Route::get('/contacts/{id}', [ContactController::class, 'show']);
+
+// Update a specific contact by ID
+Route::put('/contacts/{id}', [ContactController::class, 'update']);
+
+// Delete a specific contact by ID
+Route::delete('/contacts/{id}', [ContactController::class, 'destroy']);
