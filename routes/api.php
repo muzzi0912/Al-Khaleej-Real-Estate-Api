@@ -86,7 +86,7 @@ Route::put('/properties/{id}', [PropertyController::class, 'update']);
 // Delete a specific property by ID
 Route::delete('/properties/{id}', [PropertyController::class, 'destroy']);
 
-/*
+/* 
 |--------------------------------------------------------------------------
 | Offer Routes
 |--------------------------------------------------------------------------
