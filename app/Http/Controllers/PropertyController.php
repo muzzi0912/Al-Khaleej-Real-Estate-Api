@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Property;
+use App\Models\Category;
 use Illuminate\Support\Facades\Validator;
 
 class PropertyController extends Controller
@@ -220,4 +221,26 @@ class PropertyController extends Controller
 
         return response()->json(['message' => 'Property deleted successfully']);
     }
+
+
+    /**
+     * Display properties belonging to a specific category.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function propertiesByCategory($id)
+    {
+        $category = Category::find($id);
+
+        if (!$category) {
+            return response()->json(['message' => 'Category not found'], 404);
+        }
+
+        $properties = Property::where('category_id', $id)->with('category')->get();
+
+        return response()->json($properties);
+    }
+
+    
 }

@@ -86,6 +86,11 @@ Route::put('/properties/{id}', [PropertyController::class, 'update']);
 // Delete a specific property by ID
 Route::delete('/properties/{id}', [PropertyController::class, 'destroy']);
 
+// Retrieve all properties belonging to a specific category
+Route::get('/categories/{id}/properties', [PropertyController::class, 'propertiesByCategory']);
+
+
+
 /* 
 |--------------------------------------------------------------------------
 | Offer Routes
@@ -149,3 +154,6 @@ Route::put('/contacts/{id}', [ContactController::class, 'update']);
 // Delete a specific contact by ID
 Route::delete('/contacts/{id}', [ContactController::class, 'destroy']);
  
+
+
+
