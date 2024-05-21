@@ -148,3 +148,4 @@ Route::put('/contacts/{id}', [ContactController::class, 'update']);
 
 // Delete a specific contact by ID
 Route::delete('/contacts/{id}', [ContactController::class, 'destroy']);
+ 
